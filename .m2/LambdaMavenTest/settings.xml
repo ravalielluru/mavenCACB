@@ -1,0 +1,23 @@
+<settings>
+  <servers>
+    <server>
+      <id>my-domain--co-ops--co-ops-metadata-api</id>
+      <username>aws</username>
+      <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <id>my-domain--co-ops--co-ops-metadata-api</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <repositories>
+        <repository>
+          <id>my-domain--co-ops--co-ops-metadata-api</id>
+          <url>https://my-domain-676272199261.d.codeartifact.us-east-1.amazonaws.com/maven/co-ops--co-ops-metadata-api/</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+</settings>

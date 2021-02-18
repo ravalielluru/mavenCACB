@@ -1,0 +1,20 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo Entered the install phase...
+      - apt-get update -y
+      - apt-get install -y maven
+  pre_build:
+    commands:
+      - pip3 install awscli --upgrade --user
+      - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain account --domain-owner <repo-account-id> --query authorizationToken --output text`
+  build:
+    commands:
+      - mvn install
+      - mvn --settings mvn-settings.xml clean package test
+      - mv -f mvn-settings.xml ~/.m2/settings.xml
+  post_build:
+    commands:
+      - mvn help:effective-settings
+      - mvn deploy
